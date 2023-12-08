@@ -20,15 +20,15 @@ def generate_response(severity, values):
 def generate_severity():
     return random.uniform(0, 100)
 
-csv_file_path = 'cat_illness_dataset.csv'
+csv_file_path = 'dog_illness_dataset.csv'
 
 counter = 0
 
 with open(csv_file_path, 'w', newline='') as csvfile:
     fieldnames = ['ID', 'Age', 'Gender', 'Appetite', 'Activity Level', 'Water Consumption',
-                  'Behaviour Changes', 'Litter Box Habits', 'Coat Condition', 'Vocalization',
-                  'Weight Changes', 'Interaction with Other Pets', 'Sleep Patterns',
-                  'FVRCP Vaccination Status', 'Severity']
+                  'Behaviour Changes', 'Breathing Changes', 'Limbs Swelling', 'Vocalization',
+                  'Weight Changes', 'Nose Condition', 'Sleep Patterns',
+                  'Vaccination Status', 'Severity']
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
@@ -36,32 +36,32 @@ with open(csv_file_path, 'w', newline='') as csvfile:
     # Generate synthetic data
     for _ in range(300000):  # Adjust the number of rows as needed
         counter += 1
-        cat_age = generate_age()
-        cat_gender = random.choice(['Male', 'Female'])
-        cat_severity = generate_severity()
-        cat_vaccination_status = generate_vaccination_status(cat_severity)
+        dog_age = generate_age()
+        dog_gender = random.choice(['Male', 'Female'])
+        dog_severity = generate_severity()
+        dog_vaccination_status = generate_vaccination_status(dog_severity)
 
         # Generate responses to questions
         responses = {
-            'Appetite': generate_response(cat_severity, ['Normal', 'Increased', 'Decreased']),
-            'Activity Level': generate_response(cat_severity, ['Normal', 'More active than usual', 'Less active than usual']),
-            'Water Consumption': generate_response(cat_severity, ['Normal', 'Increased', 'Decreased']),
-            'Behaviour Changes': generate_response(cat_severity, ['Normal', 'More affectionate', 'More withdrawn']),
-            'Litter Box Habits': generate_response(cat_severity, ['Normal', 'More frequent urination', 'Less frequent urination']),
-            'Coat Condition': generate_response(cat_severity, ['Normal', 'Dull', 'Fluffy']),
-            'Vocalization': generate_response(cat_severity, ['Normal', 'More vocal', 'Less vocal']),
-            'Weight Changes': generate_response(cat_severity, ['Stable', 'Weight gain', 'Weight loss']),
-            'Interaction with Other Pets': generate_response(cat_severity, ['Normal', 'More aggressive', 'More submissive']),
-            'Sleep Patterns': generate_response(cat_severity, ['Normal', 'More sleeping', 'Less sleeping']),
+            'Appetite': generate_response(dog_severity, ['Normal', 'Increased', 'Decreased']),
+            'Activity Level': generate_response(dog_severity, ['Normal', 'More active than usual', 'Less active than usual']),
+            'Water Consumption': generate_response(dog_severity, ['Normal', 'Increased', 'Decreased']),
+            'Behaviour Changes': generate_response(dog_severity, ['Normal', 'More affectionate', 'More withdrawn']),
+            'Breathing Changes': generate_response(dog_severity, ['Normal', 'More  breathing', 'Less breathing']),
+            'Limbs Swelling': generate_response(dog_severity, ['Normal', 'Dull', 'Fluffy']),
+            'Vocalization': generate_response(dog_severity, ['Normal', 'More vocal', 'Less vocal']),
+            'Weight Changes': generate_response(dog_severity, ['Stable', 'Weight gain', 'Weight loss']),
+            'Nose Condition': generate_response(dog_severity, ['Normal', 'More wet', 'More dry']),
+            'Sleep Patterns': generate_response(dog_severity, ['Normal', 'More sleeping', 'Less sleeping']),
         }
 
         # Write row to CSV
         writer.writerow({
             'ID': f"{counter}",
-            'Age': cat_age,
-            'Gender': cat_gender,
-            'FVRCP Vaccination Status': cat_vaccination_status,
-            'Severity': cat_severity,
+            'Age': dog_age,
+            'Gender': dog_gender,
+            'Vaccination Status': dog_vaccination_status,
+            'Severity': dog_severity,
             **responses  # Include all the responses to questions
         })
 
