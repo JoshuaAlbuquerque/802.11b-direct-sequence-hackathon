@@ -13,7 +13,7 @@ def generate_severity():
 csv_file_path = 'cat_illness_dataset.csv'
 
 with open(csv_file_path, 'w', newline='') as csvfile:
-    fieldnames = ['Name', 'Age', 'Gender', 'Appetite', 'Activity Level', 'Water Consumption',
+    fieldnames = ['Age', 'Gender', 'Appetite', 'Activity Level', 'Water Consumption',
                   'Behaviour Changes', 'Litter Box Habits', 'Coat Condition', 'Vocalization',
                   'Weight Changes', 'Interaction with Other Pets', 'Sleep Patterns',
                   'FVRCP', 'Severity']
@@ -25,8 +25,8 @@ with open(csv_file_path, 'w', newline='') as csvfile:
     for _ in range(300000):  # Adjust the number of rows as needed
         cat_age = generate_age()
         cat_gender = random.choice(['Male', 'Female'])
-        cat_vaccination_status = generate_vaccination_status(severity)
         cat_severity = generate_severity()
+        cat_vaccination_status = generate_vaccination_status(cat_severity)
 
         # Generate responses to questions
         responses = {
@@ -44,7 +44,6 @@ with open(csv_file_path, 'w', newline='') as csvfile:
 
         # Write row to CSV
         writer.writerow({
-            'Name': cat_name,
             'Age': cat_age,
             'Gender': cat_gender,
             'Vaccination Status': cat_vaccination_status,
