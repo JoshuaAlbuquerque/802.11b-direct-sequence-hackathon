@@ -5,7 +5,7 @@ def generate_age():
     return random.randint(1, 15)
 
 def generate_vaccination_status(severity):
-    return random.choices(['Vaccinated', 'Not Vaccinated'], weights=[100 - Severity, Severity])[0]
+    return random.choices(['Vaccinated', 'Not Vaccinated'], weights=[100 - severity, severity])[0]
 
 def generate_response(severity, values):
     threshold = random.uniform(0.3, 0.6) * 100
@@ -22,17 +22,20 @@ def generate_severity():
 
 csv_file_path = 'cat_illness_dataset.csv'
 
+counter = 0
+
 with open(csv_file_path, 'w', newline='') as csvfile:
-    fieldnames = ['Age', 'Gender', 'Appetite', 'Activity Level', 'Water Consumption',
+    fieldnames = ['ID', 'Age', 'Gender', 'Appetite', 'Activity Level', 'Water Consumption',
                   'Behaviour Changes', 'Litter Box Habits', 'Coat Condition', 'Vocalization',
                   'Weight Changes', 'Interaction with Other Pets', 'Sleep Patterns',
-                  'FVRCP', 'Severity']
+                  'FVRCP Vaccination Status', 'Severity']
 
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
     # Generate synthetic data
     for _ in range(300000):  # Adjust the number of rows as needed
+        counter += 1
         cat_age = generate_age()
         cat_gender = random.choice(['Male', 'Female'])
         cat_severity = generate_severity()
@@ -54,9 +57,10 @@ with open(csv_file_path, 'w', newline='') as csvfile:
 
         # Write row to CSV
         writer.writerow({
+            'ID': f"{counter}",
             'Age': cat_age,
             'Gender': cat_gender,
-            'Vaccination Status': cat_vaccination_status,
+            'FVRCP Vaccination Status': cat_vaccination_status,
             'Severity': cat_severity,
             **responses  # Include all the responses to questions
         })
