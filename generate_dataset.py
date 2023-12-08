@@ -40,16 +40,16 @@ with open(csv_file_path, 'w', newline='') as csvfile:
 
         # Generate responses to questions
         responses = {
-            'Appetite': random.choice(['Normal', 'Increased', 'Decreased']),
-            'Activity Level': random.choice(['Normal', 'More active than usual', 'Less active than usual']),
-            'Water Consumption': random.choice(['Normal', 'Increased', 'Decreased']),
-            'Behaviour Changes': random.choice(['Normal', 'More affectionate', 'More withdrawn']),
-            'Litter Box Habits': random.choice(['Normal', 'More frequent urination', 'Less frequent urination']),
-            'Coat Condition': random.choice(['Normal', 'Dull', 'Fluffy']),
-            'Vocalization': random.choice(['Normal', 'More vocal', 'Less vocal']),
-            'Weight Changes': random.choice(['Stable', 'Weight gain', 'Weight loss']),
-            'Interaction with Other Pets': random.choice(['Normal', 'More aggressive', 'More submissive']),
-            'Sleep Patterns': random.choice(['Normal', 'More sleeping', 'Less sleeping']),
+            'Appetite': generate_response(cat_severity, ['Normal', 'Increased', 'Decreased']),
+            'Activity Level': generate_response(cat_severity, ['Normal', 'More active than usual', 'Less active than usual']),
+            'Water Consumption': generate_response(cat_severity, ['Normal', 'Increased', 'Decreased']),
+            'Behaviour Changes': generate_response(cat_severity, ['Normal', 'More affectionate', 'More withdrawn']),
+            'Litter Box Habits': generate_response(cat_severity, ['Normal', 'More frequent urination', 'Less frequent urination']),
+            'Coat Condition': generate_response(cat_severity, ['Normal', 'Dull', 'Fluffy']),
+            'Vocalization': generate_response(cat_severity, ['Normal', 'More vocal', 'Less vocal']),
+            'Weight Changes': generate_response(cat_severity, ['Stable', 'Weight gain', 'Weight loss']),
+            'Interaction with Other Pets': generate_response(cat_severity, ['Normal', 'More aggressive', 'More submissive']),
+            'Sleep Patterns': generate_response(cat_severity, ['Normal', 'More sleeping', 'Less sleeping']),
         }
 
         # Write row to CSV
