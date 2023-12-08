@@ -7,6 +7,16 @@ def generate_age():
 def generate_vaccination_status(severity):
     return random.choices(['Vaccinated', 'Not Vaccinated'], weights=[100 - Severity, Severity])[0]
 
+def generate_response(severity, values):
+    threshold = random.uniform(0.3, 0.6) * 100
+
+    if severity < threshold:
+        weights = [0.6, 0.2, 0.2]
+    else:
+        weights = [0.2, 0.4, 0.4]
+
+    return random.choices(values, weights=weights)[0]
+
 def generate_severity():
     return random.uniform(0, 100)
 
